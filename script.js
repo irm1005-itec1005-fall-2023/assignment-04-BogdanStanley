@@ -19,7 +19,41 @@ let appContainer = document.getElementById(appID);
 //
 // Functions
 //
+let todoItems = [];
+function addToDoItem(text) {
+  todoItems.push({
+    id: todoItems.length,
+    text: text,
+    completed: false,
+  });
+}
 
+function removeToDoItem(todoId) {
+  for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].id === todoId) {
+      todoItems.splice(i, 1);
+    }
+  }
+}
+
+function markToDoItemAsCompleted(todoId) {
+  for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].id === todoId) {
+      todoItems[i].completed = true;
+    }
+  }
+}
+
+function clearCompletedTasks() {
+  for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].completed === true) {
+      todoItems.splice(i, 1);
+    }
+  }
+}
+
+addToDoItem("Buy milk");
+console.log(todoItems);
 // Add a heading to the app container
 function inititialise() {
   // If anything is wrong with the app container then end
