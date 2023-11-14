@@ -19,14 +19,40 @@ let appContainer = document.getElementById(appID);
 //
 // Functions
 //
+let uniqueId = 0;
 let todoItems = [];
+
+const input = document.getElementById("app");
+const textbox = document.getElementById("todo-input");
+
 function addToDoItem(text) {
   todoItems.push({
-    id: todoItems.length,
+    id: uniqueId++,
     text: text,
     completed: false,
   });
 }
+
+const button = document.getElementById("todo-btn");
+let todoList = document.getElementById("todo-list");
+todo-btn.addEventListener("click", handleSubmit);
+
+function handleSubmit(event){
+  event.preventDefault();
+  console.log("USER ENTERED:" , todoItems.text);
+  let tempTodo = document.createElement("li");
+
+  tempTodo.textContent = todoItems.text;
+
+  todo-list.prepend(tempTodo);
+
+  todoItems.text= "";
+
+  console.log("Form Submitted");
+}
+ 
+
+
 
 function removeToDoItem(todoId) {
   for (let i = 0; i < todoItems.length; i++) {
@@ -70,7 +96,6 @@ function inititialise() {
   // Init complete
   console.log("App successfully initialised");
 }
-
 //
 // Inits & Event Listeners
 //

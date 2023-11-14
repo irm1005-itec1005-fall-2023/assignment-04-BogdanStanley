@@ -2,7 +2,7 @@
 <html lang="en-ca">
 
 <head>
-  <title>Assignment 04 - Finishing a Todo List App</title>
+  <title>Check List</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -15,6 +15,7 @@
     <div class="header-logo">
        <img src="./images/favicon/Black_check.svg" alt="company logo"/>
        <h2>Check List</h2> 
+       <p>The only list app you need</p>
      </div>
  </header>
   <!--
@@ -33,7 +34,19 @@
   -->
 
   <main>
-    <div id="app"></div>
+    <ul id="todo-list">
+      <li class="completed">test 1</li>
+      <li>test 2</li>
+      <li>test 3</li>
+    </ul>
+    <div class="app" id="app">
+        <h2 class="sr-only">Add To Do</h2>
+    
+        <form class="todo-add" id="todo-form">
+          <input type="text" id="todo-input" placeholder="Type here" />
+          <button id="todo-btn">Add</button>
+        </form>
+    </div>
   </main>
 
   <!-- Add JavaScript File -->
