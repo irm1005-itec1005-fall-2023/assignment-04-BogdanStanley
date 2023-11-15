@@ -34,17 +34,22 @@
   -->
 
   <main>
-    <ul id="todo-list">
+    
+    <section>
+    <h2>Your list:</h2>
+    <ul id="todo-results">
       <li class="completed">test 1</li>
       <li>test 2</li>
       <li>test 3</li>
     </ul>
+  </section>
+
     <div class="app" id="app">
         <h2 class="sr-only">Add To Do</h2>
     
         <form class="todo-add" id="todo-form">
-          <input type="text" id="todo-input" placeholder="Type here" />
-          <button id="todo-btn">Add</button>
+          <input type="text" placeholder="Type here" required id="todo-input"/>
+          <button>Add</button>
         </form>
     </div>
   </main>

@@ -14,16 +14,13 @@ const appID = "app";
 const headingText = "To do. To done. ✅";
 
 // DOM Elements
-let appContainer = document.getElementById(appID);
+let appContainer = document.getElementById("app");
 
 //
 // Functions
 //
 let uniqueId = 0;
 let todoItems = [];
-
-const input = document.getElementById("app");
-const textbox = document.getElementById("todo-input");
 
 function addToDoItem(text) {
   todoItems.push({
@@ -33,25 +30,40 @@ function addToDoItem(text) {
   });
 }
 
-const button = document.getElementById("todo-btn");
-let todoList = document.getElementById("todo-list");
-todo-btn.addEventListener("click", handleSubmit);
+let todoInputForm = document.getElementById("todo-form");
 
-function handleSubmit(event){
+let todoTextBox = document.getElementById("todo-input");
+
+let todoList = document.getElementById("todo-results");
+
+todoInputForm.addEventListener("submit", handleFormSubmit);
+
+function handleFormSubmit(event){
   event.preventDefault();
-  console.log("USER ENTERED:" , todoItems.text);
-  let tempTodo = document.createElement("li");
+  const inputValue = todoTextBox.value;
 
-  tempTodo.textContent = todoItems.text;
+  addToDoItem(inputValue); 
 
-  todo-list.prepend(tempTodo);
-
-  todoItems.text= "";
-
-  console.log("Form Submitted");
+  renderList(); 
 }
- 
 
+
+function renderList() {
+  console.log("Render List:", todoItems);
+
+  todoList.innerHTML = "";
+
+  for(let i = 0; i < todoItems.length; i++) {
+
+
+    let tempName = document.createElement("li");
+
+    tempName.textContent = todoItems[i].text;
+
+  todoList.prepend(tempName);
+
+  }
+}
 
 
 function removeToDoItem(todoId) {
