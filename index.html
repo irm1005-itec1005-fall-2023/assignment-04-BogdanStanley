@@ -17,6 +17,25 @@
        <h2>Check List</h2> 
        <p>The only list app you need</p>
      </div>
+
+     <div class="settings">
+        <img src="./images/icons/gear.png" alt="settings icon" class="collapse">
+        <div class="settings-text">
+        <h2>Settings</h2>
+        <p>Dark Mode</p>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+        <p>Clear all tasks</p>
+        <button>Clear</button>
+        <div class="info-text">
+        <h3>How to use:</h3>
+        <p>Type in textbox and press enter to add task</p>
+        <p>Left click: Complete Task</p>
+        <p>Double click: Delete Task</p>
+      </div>
+      </div>
  </header>
   <!--
 
@@ -35,16 +54,15 @@
 
   <main>
     
-    <section>
+  <div class="app" id="app">
+
+  <section class="list">
     <h2>Your list:</h2>
     <ul id="todo-results">
-      <li class="completed">test 1</li>
-      <li>test 2</li>
-      <li>test 3</li>
+      <li>Start adding tasks</li>
     </ul>
   </section>
 
-    <div class="app" id="app">
         <h2 class="sr-only">Add To Do</h2>
     
         <form class="todo-add" id="todo-form">
