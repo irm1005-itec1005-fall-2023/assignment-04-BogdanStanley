@@ -34,6 +34,17 @@ for (i = 0; i < collapse.length; i++) {
   });
 } 
 
+let clearAllButton = document.getElementById("clear-all-btn");
+clearAllButton.addEventListener("click", clearAllTasks);
+
+function clearAllTasks() {
+  todoItems = [];
+  console.log("Array Cleared", todoItems);
+  renderList();
+}
+
+//Todo App
+
 let uniqueId = 0;
 let todoItems = [];
 
@@ -57,9 +68,10 @@ function handleFormSubmit(event){
   event.preventDefault();
   const inputValue = todoTextBox.value;
 
-  addToDoItem(inputValue); 
-
+  addToDoItem(inputValue);
   renderList(); 
+
+  todoTextBox.value = "";
 }
 
 
@@ -68,14 +80,24 @@ function renderList() {
 
   todoList.innerHTML = "";
 
-  for (let i = 0; i < todoItems.length; i++) {
-    let tempName = document.createElement("li");
-    tempName.textContent = todoItems[i].text;
-    tempName.dataset.id = todoItems[i].id;
-    todoList.prepend(tempName);
+  if (todoItems.length === 0) {
+    let emptyMessage = document.createElement("p");
+    emptyMessage.textContent = "Uh oh! Your list is empty!";
+    todoList.appendChild(emptyMessage);
+  } else {
+    for (let i = 0; i < todoItems.length; i++) {
+      let tempName = document.createElement("li");
+      tempName.textContent = todoItems[i].text;
+      tempName.dataset.id = todoItems[i].id;
+
+      if (todoItems[i].completed) {
+        tempName.classList.add("completed");
+      }
+
+      todoList.prepend(tempName);
+    }
   }
 }
-
 
 
 let todoResults = document.getElementById("todo-results");
@@ -97,7 +119,6 @@ function markToDoItemAsCompleted(todoId) {
     }
   }
 }
-console.log(todoItems);
 
 todoResults.addEventListener("dblclick", handleListDoubleClick);
 
@@ -116,14 +137,19 @@ function removeToDoItem(todoId) {
   }
 }
 
-// Add a button to clear all completed tasks
+let clearCompletedButton = document.getElementById("clear-btn");
+clearCompletedButton.addEventListener("click", clearCompletedTasks);
+
 function clearCompletedTasks() {
-  for (let i = 0; i < todoItems.length; i++) {
+  for (let i = todoItems.length - 1; i >= 0; i--) {
     if (todoItems[i].completed === true) {
       todoItems.splice(i, 1);
     }
   }
+  renderList();
 }
+
+
 
 // Add a heading to the app container
 function inititialise() {
@@ -132,8 +158,6 @@ function inititialise() {
     console.error("Error: Could not find app contianer");
     return;
   }
-
-  // Create an h1 and add it to our app
  
   // Init complete
   console.log("App successfully initialised");

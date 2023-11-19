@@ -59,7 +59,7 @@ header img {
   height: 1.6rem;
   display: flex;
 }
-header h2 {
+header h1 {
   margin-left: 0.5rem;
   
 }
@@ -77,9 +77,19 @@ header p{
   display: flex;
   float: right;
 }
-.active, .collapse:hover {
-  background-color: #ccc;
+.active, .collapse:active {
+  animation: rotation 0.1s ease-in;
 }
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-45deg);
+  }
+}
+
 .settings-text{
   position: absolute;
   right: 0;
@@ -92,57 +102,24 @@ header p{
   box-shadow: 0 3px 1rem #3b344e;
 }
 
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-}
-
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
+.clear-all-btn {
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #526799;
   cursor: pointer;
-  border-radius: 34px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #526799;
+  color: var(--colour-extra-light);
+  font-weight: bold;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  border-radius: 50%;
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+.clear-all-btn:hover {
+  background-color: #657aac;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+.clear-all-btn:active {
+  background-color: #526799;
 }
 
 main {
@@ -153,7 +130,7 @@ main {
   display: flex;
   flex-direction: column;
   width: 50rem;
-  height: 35rem;
+  height: 38rem;
   background-color: #ffffff;
   border-radius: 2rem;
   padding: 2rem;
@@ -201,12 +178,20 @@ main {
   background-color: #657aac;
 }
 
+.todo-add button:active {
+  background-color: #526799;
+}
+
+.list p {
+  color: rgb(179, 179, 179);
+}
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   overflow: auto;
-  height: 100%;
+  height: 25rem;
 }
 ul li {
   display: flex;
@@ -215,6 +200,7 @@ ul li {
   background-color: var(--colour-default-light);
   border-radius: 0.5rem;
   cursor: pointer;
+  user-select: none;
 }
 
 ul li:before {
@@ -242,6 +228,25 @@ ul li:active {
   background-color: var(--colour-bold);
 }
 
+.clear-btn {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid #526799;
+  cursor: pointer;
+  background-color: #526799;
+  color: var(--colour-extra-light);
+  font-weight: bold;
+}
+
+.clear-btn:hover {
+  background-color: #657aac;
+}
+
+.clear-btn:active {
+  background-color: #526799;
+}
+
+
 /****** Screen reader text utility clsas *******/
 .sr-only {
   position: absolute;
@@ -257,11 +262,26 @@ ul li:active {
 
 /* MEDIA QUERIES */
 /* phones */
-@media (max-width: 480px) {
+
+
+@media (max-width: 428px) {
   
   .app {
     width: 25rem;
-    height: 33rem;
+    height: 37rem;
+  }
+  .header-logo p {
+    display: none;
+  }
+}
+
+@media (max-width: 360px) {
+  .app {
+    width: 16rem;
+    height: 37rem;
+  }
+  header h1 {
+    font-size: 1.8rem;
   }
   .header-logo p {
     display: none;

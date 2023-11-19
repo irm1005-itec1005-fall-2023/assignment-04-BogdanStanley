@@ -14,27 +14,19 @@
   <header>
     <div class="header-logo">
        <img src="./images/favicon/Black_check.svg" alt="company logo"/>
-       <h2>Check List</h2> 
+       <h1>Check List</h1> 
        <p>The only list app you need</p>
      </div>
-
+    
      <div class="settings">
         <img src="./images/icons/gear.png" alt="settings icon" class="collapse">
         <div class="settings-text">
-        <h2>Settings</h2>
-        <p>Dark Mode</p>
-        <label class="switch">
-          <input type="checkbox">
-          <span class="slider"></span>
-        </label>
-        <p>Clear all tasks</p>
-        <button>Clear</button>
-        <div class="info-text">
-        <h3>How to use:</h3>
+        <h2>How to use:</h2>
         <p>Type in textbox and press enter to add task</p>
         <p>Left click: Complete Task</p>
         <p>Double click: Delete Task</p>
-      </div>
+      <button class="clear-all-btn" id="clear-all-btn">Clear all tasks</button>
+
       </div>
  </header>
   <!--
@@ -59,7 +51,7 @@
   <section class="list">
     <h2>Your list:</h2>
     <ul id="todo-results">
-      <li>Start adding tasks</li>
+      <p>Uh oh! Your list is empty!</p>
     </ul>
   </section>
 
@@ -69,10 +61,17 @@
           <input type="text" placeholder="Type here" required id="todo-input"/>
           <button>Add</button>
         </form>
+          <button class="clear-btn" id="clear-btn">Clear completed tasks</button>
+        
     </div>
   </main>
 
-  <!-- Add JavaScript File -->
+  <!-- 
+    Sources
+    https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+    https://www.w3schools.com/howto/howto_css_switch.asp 
+    https://www.w3schools.com/css/css3_animations.asp
+  -->
   <script src="./script.js"></script>
 
 </body>
