@@ -48,6 +48,25 @@ function clearAllTasks() {
 let uniqueId = 0;
 let todoItems = [];
 
+let todoInputForm = document.getElementById("todo-form");
+let todoTextBox = document.getElementById("todo-input");
+let todoList = document.getElementById("todo-results");
+
+let todoResults = document.getElementById("todo-results");
+
+let clearCompletedButton = document.getElementById("clear-btn");
+clearCompletedButton.addEventListener("click", clearCompletedTasks);
+
+function clearCompletedTasks() {
+  for (let i = todoItems.length - 1; i >= 0; i--) {
+    if (todoItems[i].completed === true) {
+      todoItems.splice(i, 1);
+    }
+  }
+  renderList();
+}
+
+
 function addToDoItem(text) {
   todoItems.push({
     id: uniqueId++,
@@ -55,12 +74,6 @@ function addToDoItem(text) {
     completed: false,
   });
 }
-
-let todoInputForm = document.getElementById("todo-form");
-
-let todoTextBox = document.getElementById("todo-input");
-
-let todoList = document.getElementById("todo-results");
 
 todoInputForm.addEventListener("submit", handleFormSubmit);
 
@@ -70,14 +83,13 @@ function handleFormSubmit(event){
 
   addToDoItem(inputValue);
   renderList(); 
+  console.log("Task added", todoItems);
 
-  todoTextBox.value = "";
+  todoInputForm.reset();
 }
 
 
 function renderList() {
-  console.log("Todo List:", todoItems);
-
   todoList.innerHTML = "";
 
   if (todoItems.length === 0) {
@@ -90,6 +102,14 @@ function renderList() {
       tempName.textContent = todoItems[i].text;
       tempName.dataset.id = todoItems[i].id;
 
+      let deleteButton = document.createElement("img");       
+      deleteButton.src = "./images/icons/cross-small.svg";       
+      deleteButton.alt = "Delete Task";       
+      deleteButton.dataset.id = todoItems[i].id;       
+      deleteButton.classList.add("delete-btn");       
+      deleteButton.addEventListener("click", deleteTask);        
+      tempName.appendChild(deleteButton);
+
       if (todoItems[i].completed) {
         tempName.classList.add("completed");
       }
@@ -98,9 +118,6 @@ function renderList() {
     }
   }
 }
-
-
-let todoResults = document.getElementById("todo-results");
 
 todoResults.addEventListener("click", handleListClick);
 function handleListClick(event) {
@@ -120,6 +137,19 @@ function markToDoItemAsCompleted(todoId) {
   }
 }
 
+
+
+deleteButton.addEventListener("click", deleteTask);
+
+function deleteTask(event) {
+  const todoId = parseInt(event.target.dataset.id);
+  removeToDoItem(todoId);
+  if (event.target.matches("img")) {
+    event.target.parentElement.remove();
+  }
+}
+
+
 todoResults.addEventListener("dblclick", handleListDoubleClick);
 
 function handleListDoubleClick(event) {
@@ -127,6 +157,7 @@ function handleListDoubleClick(event) {
   if (event.target.matches("li")) {
     event.target.remove();
   }
+  console.log("Task Removed:", todoItems);
 }
 
 function removeToDoItem(todoId) {
@@ -135,18 +166,7 @@ function removeToDoItem(todoId) {
       todoItems.splice(i, 1);
     }
   }
-}
-
-let clearCompletedButton = document.getElementById("clear-btn");
-clearCompletedButton.addEventListener("click", clearCompletedTasks);
-
-function clearCompletedTasks() {
-  for (let i = todoItems.length - 1; i >= 0; i--) {
-    if (todoItems[i].completed === true) {
-      todoItems.splice(i, 1);
-    }
-  }
-  renderList();
+  console.log("Task removed", todoItems); 
 }
 
 

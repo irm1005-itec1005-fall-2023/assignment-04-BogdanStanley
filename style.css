@@ -60,6 +60,7 @@ header img {
   display: flex;
 }
 header h1 {
+  user-select: none;
   margin-left: 0.5rem;
   
 }
@@ -76,7 +77,13 @@ header p{
   cursor: pointer;
   display: flex;
   float: right;
+  margin-top: 0.6rem;
 }
+
+.collapse:hover {
+    animation: grow 0.1s ease-in-out forwards;
+}
+
 .active, .collapse:active {
   animation: rotation 0.1s ease-in;
 }
@@ -93,6 +100,7 @@ header p{
 .settings-text{
   position: absolute;
   right: 0;
+  transform: translate(0, 5%);
   padding: 1rem;
   margin: 2rem;
   display: none;
@@ -142,11 +150,7 @@ main {
 
 .todo-add {
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 1rem;
-  margin-top: auto;
-
 }
 
 .todo-add input {
@@ -162,6 +166,27 @@ main {
 .todo-add input:focus {
   outline: none;
 }
+
+.todo-add img {
+  width: 1.3rem;
+  height: 1.6rem;
+  margin-right: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.todo-add img:active {
+  animation: shrink 0.1s ease-in-out forwards;
+}
+
+@keyframes shrink {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.9);
+  }
+}
+
 
 .todo-add button {
   padding: 0.5rem;
@@ -182,8 +207,13 @@ main {
   background-color: #526799;
 }
 
+.list h2 {
+  user-select: none;
+}
+
 .list p {
   color: rgb(179, 179, 179);
+  user-select: none;
 }
 
 ul {
@@ -192,7 +222,8 @@ ul {
   margin: 0;
   overflow: auto;
   height: 25rem;
-}
+} 
+
 ul li {
   display: flex;
   padding: 0.5rem;
@@ -201,33 +232,63 @@ ul li {
   border-radius: 0.5rem;
   cursor: pointer;
   user-select: none;
+  font-weight:bold;
+
 }
 
 ul li:before {
-  content: "☐";
+  content: url( "./images/icons/circle-empty.svg");
   margin-right: 0.5rem;
+  margin-top: 0.1rem;
+  width: 0.9rem;
+  height: 0.9rem;
 }
 
 ul li.completed:before {
-  content: "☑";
-  
+  content: url( "./images/icons/circle-filled.svg");
 }
 
 ul li.completed {
   text-decoration:line-through;
-
+  text-decoration-thickness: 1px;
+  color: #223e65;
   background-color: var(--colour-default);
 }
 
 ul li:hover {
   background-color: var(--colour-default-bold);
   text-decoration:line-through;
+  text-decoration-thickness: 1px;
 }
 
 ul li:active {
   background-color: var(--colour-bold);
 }
 
+.delete-btn {
+  cursor: pointer;
+  margin-left: auto;
+  width: 1.2rem;
+  background-color: transparent;
+  border: none;
+}
+
+.delete-btn:hover {
+  animation: grow 0.1s ease-in-out forwards;
+ }
+
+ .delete-btn:active {
+  animation: grow 0.1s ease-in-out backwards;
+ }
+
+@keyframes grow {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
 .clear-btn {
   padding: 0.5rem;
   border-radius: 0.75rem;
@@ -244,6 +305,16 @@ ul li:active {
 
 .clear-btn:active {
   background-color: #526799;
+  animation: shrink2 0.1s ease-in-out forwards;
+}
+
+@keyframes shrink2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0.99);
+  }
 }
 
 
