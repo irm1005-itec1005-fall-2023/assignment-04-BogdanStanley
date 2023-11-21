@@ -19,13 +19,13 @@
      </div>
     
      <div class="settings">
-        <img src="./images/icons/gear.png" alt="settings icon" class="collapse">
+        <img src="./images/icons/settings.svg" alt="settings icon" class="collapse">
         <div class="settings-text">
         <h2>How to use:</h2>
         <p>Type in textbox and press enter to add task</p>
         <p>Left click: Complete Task</p>
         <p>Double click: Delete Task</p>
-      <button class="clear-all-btn" id="clear-all-btn">Clear all tasks</button>
+      <button class="clear-all-btn" id="clear-all-btn"><img src="./images/icons/refresh.svg" alt="refresh symbol"/>Clear all tasks</button>
 
       </div>
  </header>
@@ -58,7 +58,7 @@
         <h2 class="sr-only">Add To Do</h2>
     
         <form class="todo-add" id="todo-form">
-          <input type="text" placeholder="Type here" required id="todo-input"/>
+          <input type="text" placeholder="Type here" required id="todo-input" autocomplete="off" />
           <button><img src="./images/icons/paper-plane.svg" alt="Sumbit button"/></button>
         </form>
           <button class="clear-btn" id="clear-btn">Clear completed tasks</button>
