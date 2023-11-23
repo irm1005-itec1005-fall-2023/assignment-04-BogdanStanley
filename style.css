@@ -59,10 +59,10 @@ header img {
   height: 1.6rem;
   display: flex;
 }
-header h1 {
+header h2 {
   user-select: none;
   margin-left: 0.5rem;
-  
+  font-size: 2rem;
 }
 
 header p{
@@ -361,7 +361,7 @@ ul li:active {
     width: 16rem;
     height: 37rem;
   }
-  header h1 {
+  header h2 {
     font-size: 1.8rem;
   }
   .header-logo p {

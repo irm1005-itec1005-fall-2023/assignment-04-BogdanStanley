@@ -10,16 +10,14 @@
 //
 
 // Constants
-const appID = "app";
-
-// DOM Elements
-let appContainer = document.getElementById("app");
-
+const app = "app";
+const headingText = "To do. To done. ✅";
 //
 // Functions
 //
 
 //Settings Menu
+
 let collapse = document.getElementsByClassName("collapse");
 
 for (i = 0; i < collapse.length; i++) {
@@ -57,6 +55,17 @@ let todoResults = document.getElementById("todo-results");
 let clearCompletedButton = document.getElementById("clear-btn");
 clearCompletedButton.addEventListener("click", clearCompletedTasks);
 
+let deleteButton = document.getElementById("deleteButton");
+deleteButton.addEventListener("click", deleteTask);
+
+function deleteTask(event) {
+  const todoId = parseInt(event.target.dataset.id);
+  removeToDoItem(todoId);
+  if (event.target.matches("img")) {
+    event.target.parentElement.remove();
+  }
+}
+
 function clearCompletedTasks() {
   for (let i = todoItems.length - 1; i >= 0; i--) {
     if (todoItems[i].completed === true) {
@@ -65,7 +74,6 @@ function clearCompletedTasks() {
   }
   renderList();
 }
-
 
 function addToDoItem(text) {
   todoItems.push({
@@ -87,7 +95,6 @@ function handleFormSubmit(event){
 
   todoInputForm.reset();
 }
-
 
 function renderList() {
   todoList.innerHTML = "";
@@ -129,27 +136,6 @@ function handleListClick(event) {
   }
 }
 
-function markToDoItemAsCompleted(todoId) {
-  for (let i = 0; i < todoItems.length; i++) {
-    if (todoItems[i].id === todoId) {
-      todoItems[i].completed = !todoItems[i].completed;
-    }
-  }
-}
-
-
-
-deleteButton.addEventListener("click", deleteTask);
-
-function deleteTask(event) {
-  const todoId = parseInt(event.target.dataset.id);
-  removeToDoItem(todoId);
-  if (event.target.matches("img")) {
-    event.target.parentElement.remove();
-  }
-}
-
-
 todoResults.addEventListener("dblclick", handleListDoubleClick);
 
 function handleListDoubleClick(event) {
@@ -157,7 +143,14 @@ function handleListDoubleClick(event) {
   if (event.target.matches("li")) {
     event.target.remove();
   }
-  console.log("Task Removed:", todoItems);
+}
+
+function markToDoItemAsCompleted(todoId) {
+  for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].id === todoId) {
+      todoItems[i].completed = !todoItems[i].completed;
+    }
+  }
 }
 
 function removeToDoItem(todoId) {
@@ -169,20 +162,26 @@ function removeToDoItem(todoId) {
   console.log("Task removed", todoItems); 
 }
 
-
+let appContainer = document.getElementById(app);
 
 // Add a heading to the app container
 function inititialise() {
   // If anything is wrong with the app container then end
   if (!appContainer) {
-    console.error("Error: Could not find app contianer");
+    console.error("Error: Could not find app container");
     return;
   }
- 
+
+  // Create an h1 and add it to our app
+  const h1 = document.createElement("h1");
+  h1.innerText = headingText;
+  h1.classList.add("sr-only"); 
+
+  appContainer.appendChild(h1);
+
   // Init complete
   console.log("App successfully initialised");
+  clearAllTasks();
 }
-//
-// Inits & Event Listeners
-//
+
 inititialise();
