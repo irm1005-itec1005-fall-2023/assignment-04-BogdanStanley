@@ -11,7 +11,6 @@
 
 // Constants
 const app = "app";
-const headingText = "To do. To done. ✅";
 //
 // Functions
 //
@@ -31,6 +30,23 @@ for (i = 0; i < collapse.length; i++) {
     }
   });
 } 
+
+let startupButton = document.getElementById("startup-btn");
+let startup = document.getElementById("startup");
+let appElement = document.getElementById("app");
+
+startupButton.addEventListener("click", appStartup);
+
+function appStartup() {
+  console.log("Starting up app...");
+  startup.style.opacity = '0';
+  appElement.style.opacity = '1';
+  setTimeout(() => {
+    startup.style.display = 'none';
+    appElement.style.display = 'flex';
+  }, 600);
+}
+
 
 let clearAllButton = document.getElementById("clear-all-btn");
 clearAllButton.addEventListener("click", clearAllTasks);
@@ -173,12 +189,7 @@ function inititialise() {
   }
 
   // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  h1.innerText = headingText;
-  h1.classList.add("sr-only"); 
-
-  appContainer.appendChild(h1);
-
+ 
   // Init complete
   console.log("App successfully initialised");
   clearAllTasks();

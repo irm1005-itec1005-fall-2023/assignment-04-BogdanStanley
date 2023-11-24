@@ -144,8 +144,58 @@ main {
   min-height: 100vh;
 }
 
-.app {
+.startup {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 23rem;
+  background-color: #ffffff;
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: auto;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 1rem #3b344e;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.startup h1 {
+  user-select: none;
+  margin-bottom: 4rem;
+  font-size: 1.5rem;
+  color: var(--colour-cello);
+}
+
+.startup button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: auto;
+  width: 8rem;
+}
+
+.startup img:hover {
+  content: url( "./images/icons/add-hover.svg");
+  animation: grow2 0.1s ease-in-out both;
+}
+
+.startup img:active {
+  animation: shrink2 0.1s ease-in-out forwards;
+}
+
+@keyframes grow2 {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.app {
+  display: none;
   flex-direction: column;
   width: 50rem;
   height: 38rem;
@@ -153,10 +203,12 @@ main {
   border-radius: 2rem;
   padding: 2rem;
   margin: auto;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 1rem;
   box-shadow: 0 3px 1rem #3b344e;
+  transition: opacity 0.5s ease-in-out;
 }
+
 
 .todo-add {
   display: flex;
@@ -327,7 +379,15 @@ ul li:active {
   }
 }
 
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
 /****** Screen reader text utility clsas *******/
 .sr-only {
   position: absolute;
@@ -341,9 +401,7 @@ ul li:active {
   border-width: 0;
 }
 
-/* MEDIA QUERIES */
 /* phones */
-
 
 @media (max-width: 428px) {
   
