@@ -2,29 +2,35 @@
 <html lang="en-ca">
 
 <head>
-  <!-- Set the page title -->
-  <title>Assignment 04 - Finishing a Todo List App</title>
-
-  <!-- Set the charset we're using to UTF-8 -->
+  <title>Check List</title>
   <meta charset="utf-8" />
-
-  <!-- Set the screens default zoom / scale to 1 -->
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Specifies the document mode for Internet Explorer -->
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-  <!-- Set the CSS Reset File -->
   <link rel="stylesheet" href="./reset.css" />
-
-  <!-- Set the main stylesheet -->
   <link rel="stylesheet" href="./style.css" />
-
-  <!-- Set the Favicon  -->
-  <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
+  <link rel="icon" href="./images/favicon/Black_check.svg" type="image/svg+xml" />
 </head>
 <body>
+  <header>
+    <div class="header-logo">
+       <img src="./images/favicon/Blue_check.svg" alt="company logo"/>
+       <h2>Check List</h2> 
+       <p>The only list app you need</p>
+     </div>
+    <section>
+     <div class="settings">
+        <img src="./images/icons/settings.svg" alt="settings icon" class="collapse">
+        <div class="settings-text">
+        <h2>How to use:</h2>
+        <p>Type in textbox and press enter to add task</p>
+        <p>Left click: Complete Task</p>
+        <p>Double click: Delete Task</p>
+      <button class="clear-all-btn" id="clear-all-btn"><img src="./images/icons/refresh.svg" alt="refresh symbol"/>Clear all tasks</button>
 
+      </div>
+      </div>
+    </section>
+ </header>
   <!--
 
     Assignment 04 - Finishing a Todo List App
@@ -41,10 +47,36 @@
   -->
 
   <main>
-    <div id="app"></div>
+<div class="startup" id="startup">
+  <h1>Create a new todo list</h1>
+  <button id="startup-btn"><img src="./images/icons/add.svg" alt="add new task"></button>
+</div>
+
+  <div class="app" id="app">
+  <section class="list">
+    <h2>Your list:</h2>
+    <ul id="todo-results">  
+      <li>Start adding tasks!<img class="delete-btn" id="deleteButton" src="./images/icons/cross-small.svg" alt="Delete Task"></li>
+    </ul>
+    
+  </section>
+        <h2 class="sr-only">Add To Do</h2>
+    
+        <form class="todo-add" id="todo-form">
+          <input type="text" placeholder="Type here" required id="todo-input" autocomplete="off" />
+          <button><img src="./images/icons/paper-plane.svg" alt="Sumbit button"/></button>
+        </form>
+          <button class="clear-btn" id="clear-btn">Clear completed tasks</button>
+        
+    </div>
   </main>
 
-  <!-- Add JavaScript File -->
+  <!-- 
+    Sources
+    https://developer.mozilla.org/en-US/docs/Web/CSS/overflow
+    https://www.w3schools.com/howto/howto_css_switch.asp 
+    https://www.joshwcomeau.com/animation/keyframe-animations/
+  -->
   <script src="./script.js"></script>
 
 </body>
